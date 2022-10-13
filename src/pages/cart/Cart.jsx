@@ -5,10 +5,8 @@ import IconButton from "../../components/icon_button/IconButton";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addItemToCart,
-  clearCart,
   decreaseItemFromCart,
-  removeItemFromCart,
-} from "../../redux/reducers/cart/cart.actions";
+} from "../../toolkit/slices/cart.slice";
 // import { cartActions } from "../../context/cart/cart.reducer";
 // import { CartContext } from "../../context/cart/CartProvider";
 import "./cart.style.scss";

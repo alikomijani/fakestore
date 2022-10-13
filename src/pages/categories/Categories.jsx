@@ -6,7 +6,7 @@ import "./categories.style.scss";
 import { products } from "../../db";
 // import { CartContext } from "../../context/cart/CartProvider";
 // import { cartActions } from "../../context/cart/cart.reducer";
-import { addItemToCart } from "../../redux/reducers/cart/cart.actions";
+import { addItemToCart } from "../../toolkit/slices/cart.slice";
 import { useDispatch } from "react-redux";
 const Categories = () => {
   const { categoryID } = useParams();

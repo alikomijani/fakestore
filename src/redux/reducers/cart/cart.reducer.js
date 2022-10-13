@@ -6,7 +6,7 @@ function cartReducer(state = [], action) {
   switch (type) {
     case cartActions.ADD:
       return ADD_ITEM(state, payload);
-    case cartActions.REMOVE: {
+    case cartActions: {
       return state.filter((item) => item.id !== payload.id);
     }
     case cartActions.CLEAR:

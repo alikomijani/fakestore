@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from "react";
 import "./cart.style.scss";
 import Button from "../button/Button";
 import IconButton from "../icon_button/IconButton";
-import { cartActions } from "../../context/cart/cart.reducer";
+// import { cartActions } from "../../context/cart/cart.reducer";
 import clsx from "clsx";
 // import { CartContext } from "../../context/cart/CartProvider";
 import {
   addItemToCart,
   decreaseItemFromCart,
-} from "../../redux/reducers/cart/cart.actions";
+} from "../../toolkit/slices/cart.slice";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 const Cart = ({ open, handleClose }) => {
