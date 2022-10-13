@@ -27,7 +27,7 @@ function cartReducer(state = [], action) {
       }
     }
     default: {
-      throw new Error("action not found");
+      return state;
     }
   }
 }

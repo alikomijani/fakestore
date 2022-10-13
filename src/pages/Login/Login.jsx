@@ -1,28 +1,29 @@
 import React, { useContext } from "react";
 import Button from "../../components/button/Button";
 import { fakeLogin } from "../../db";
-import { authActions } from "../../context/auth/auth.reducer";
+// import { authActions } from "../../context/auth/auth.reducer";
 import "./login.style.scss";
-import { AuthContext } from "../../context/auth/AuthProvider";
+// import { AuthContext } from "../../context/auth/AuthProvider";
 import { Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogout, loginUser } from "../../redux/reducers/auth/auth.actions";
 const Login = () => {
-  const { authDispatch, auth } = useContext(AuthContext);
+  // const { authDispatch, auth } = useContext(AuthContext);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form_data = new FormData(e.target);
     const data = Object.fromEntries(form_data.entries());
     fakeLogin(data.username, data.password)
       .then((data) => {
-        authDispatch({
-          type: authActions.login,
-          payload: data,
-        });
+        dispatch(loginUser(data));
       })
       .catch((e) => {
         console.log(e);
       });
   };
-  if (auth.isLogin) {
+  if (isLogin) {
     return <Navigate to={"/"} />;
   }
   return (

@@ -5,9 +5,12 @@ import Container from "../../components/container/Container";
 import "./home.style.scss";
 import { cartActions } from "../../context/cart/cart.reducer";
 import { products } from "../../db";
-import { CartContext } from "../../context/cart/CartProvider";
+// import { CartContext } from "../../context/cart/CartProvider";
+import { addItemToCart } from "../../redux/reducers/cart/cart.actions";
+import { useDispatch } from "react-redux";
 const Home = () => {
-  const { dispatch } = useContext(CartContext);
+  // const { dispatch } = useContext(CartContext);
+  const dispatch = useDispatch();
   return (
     <div className="Home">
       <Container>
@@ -16,7 +19,7 @@ const Home = () => {
             <Card
               key={index}
               {...item}
-              onClick={() => dispatch({ type: cartActions.add, payload: item })}
+              onClick={() => dispatch(addItemToCart(item))}
             />
           ))}
         </CardList>
@@ -25,7 +28,7 @@ const Home = () => {
             <Card
               key={index}
               {...item}
-              onClick={() => dispatch({ type: cartActions.add, payload: item })}
+              onClick={() => dispatch(addItemToCart(item))}
             />
           ))}
         </CardList>
@@ -34,7 +37,7 @@ const Home = () => {
             <Card
               key={index}
               {...item}
-              onClick={() => dispatch({ type: cartActions.add, payload: item })}
+              onClick={() => dispatch(addItemToCart(item))}
             />
           ))}
         </CardList>

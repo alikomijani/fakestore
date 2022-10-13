@@ -4,10 +4,17 @@ import Button from "../button/Button";
 import IconButton from "../icon_button/IconButton";
 import { cartActions } from "../../context/cart/cart.reducer";
 import clsx from "clsx";
-import { CartContext } from "../../context/cart/CartProvider";
+// import { CartContext } from "../../context/cart/CartProvider";
+import {
+  addItemToCart,
+  decreaseItemFromCart,
+} from "../../redux/reducers/cart/cart.actions";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 const Cart = ({ open, handleClose }) => {
-  const { dispatch, cartItems } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
+  // const { dispatch, cartItems } = useContext(CartContext);
   useEffect(() => {
     document.addEventListener("click", handleClose);
     return () => {
@@ -35,25 +42,11 @@ const Cart = ({ open, handleClose }) => {
                 <img src={p.image} alt="" />
                 <div>{p.name}</div>
                 <div className="Cart__controller">
-                  <IconButton
-                    onClick={() =>
-                      dispatch({
-                        type: cartActions.add,
-                        payload: p,
-                      })
-                    }
-                  >
+                  <IconButton onClick={() => dispatch(addItemToCart(p))}>
                     {"+"}
                   </IconButton>
                   {p.count}
-                  <IconButton
-                    onClick={() =>
-                      dispatch({
-                        type: cartActions.decrease,
-                        payload: p,
-                      })
-                    }
-                  >
+                  <IconButton onClick={() => dispatch(decreaseItemFromCart(p))}>
                     {"-"}
                   </IconButton>
                 </div>

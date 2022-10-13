@@ -4,8 +4,10 @@ import Card from "../../components/card/Card";
 import Container from "../../components/container/Container";
 import "./categories.style.scss";
 import { products } from "../../db";
-import { CartContext } from "../../context/cart/CartProvider";
-import { cartActions } from "../../context/cart/cart.reducer";
+// import { CartContext } from "../../context/cart/CartProvider";
+// import { cartActions } from "../../context/cart/cart.reducer";
+import { addItemToCart } from "../../redux/reducers/cart/cart.actions";
+import { useDispatch } from "react-redux";
 const Categories = () => {
   const { categoryID } = useParams();
   const [categories, setCategories] = useState([
@@ -16,7 +18,8 @@ const Categories = () => {
     { id: 5, title: "لوازم جانبی" },
   ]);
   const [productList, setProductList] = useState(products);
-  const { dispatch } = useContext(CartContext);
+  // const { dispatch } = useContext(CartContext);
+  const dispatch = useDispatch();
   return (
     <div className="Categories">
       <Container>
@@ -40,12 +43,7 @@ const Categories = () => {
                 <Card
                   key={index}
                   {...p}
-                  onClick={() =>
-                    dispatch({
-                      type: cartActions.add,
-                      payload: p,
-                    })
-                  }
+                  onClick={() => dispatch(addItemToCart(p))}
                 />
               ))}
             </div>

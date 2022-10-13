@@ -1,15 +1,13 @@
 import "./App.css";
 import router from "./routes/routes";
 import { RouterProvider } from "react-router-dom";
-import CartProvider from "./context/cart/CartProvider";
-import AuthProvider from "./context/auth/AuthProvider";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <RouterProvider router={router} />
-      </CartProvider>
-    </AuthProvider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 
