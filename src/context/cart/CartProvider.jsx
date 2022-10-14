@@ -8,7 +8,6 @@ export const CartContext = React.createContext({
 
 const CartProvider = ({ children }) => {
   const [cartItems, dispatch] = React.useReducer(cartReducer, []);
-
   return (
     <CartContext.Provider
       value={{

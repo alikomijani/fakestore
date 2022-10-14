@@ -19,4 +19,10 @@
   .Login__submit {
     width: 100%;
   }
+  .Login_error {
+    background-color: rgb(215, 49, 49);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+  }
 }

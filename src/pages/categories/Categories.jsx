@@ -3,21 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import Card from "../../components/card/Card";
 import Container from "../../components/container/Container";
 import "./categories.style.scss";
-import { products } from "../../db";
 // import { CartContext } from "../../context/cart/CartProvider";
 // import { cartActions } from "../../context/cart/cart.reducer";
 import { addItemToCart } from "../../toolkit/slices/cart.slice";
 import { useDispatch } from "react-redux";
 const Categories = () => {
   const { categoryID } = useParams();
-  const [categories, setCategories] = useState([
-    { id: 1, title: "موبایل" },
-    { id: 2, title: "لپ تاپ" },
-    { id: 3, title: "تلویزیون" },
-    { id: 4, title: "بازی" },
-    { id: 5, title: "لوازم جانبی" },
-  ]);
-  const [productList, setProductList] = useState(products);
+  const [categories, setCategories] = useState();
+  const [productList, setProductList] = useState([]);
   // const { dispatch } = useContext(CartContext);
   const dispatch = useDispatch();
   return (
