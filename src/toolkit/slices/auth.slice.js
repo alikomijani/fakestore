@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fakeLogin } from "../../db";
+import axios from "../../api/axios";
 
 export const loginUserAsync = createAsyncThunk(
   "auth/loginUserAsync",
   async (authData, thunkAPI) => {
-    const data = await fakeLogin(authData.username, authData.password);
-    return data;
+    console.log(authData);
+    const res = await axios.post("/api/login", authData);
+    return res.data;
   }
 );
 export const authSlice = createSlice({

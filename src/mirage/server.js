@@ -1,4 +1,4 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, belongsTo } from "miragejs";
 import { categoriesRoutes, categoriesSeeds } from "./categories/categories";
 import { productsRoutes, productsSeeds } from "./products/products";
 import { usersRoutes, usersSeeds } from "./users/users";
@@ -8,7 +8,9 @@ export function makeServer({ environment = "test" } = {}) {
     environment,
     models: {
       user: Model,
-      product: Model,
+      product: Model.extend({
+        category: belongsTo("category"),
+      }),
       category: Model,
     },
     seeds(server) {
