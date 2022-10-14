@@ -6,20 +6,28 @@ import "./home.style.scss";
 // import { CartContext } from "../../context/cart/CartProvider";
 import { addItemToCart } from "../../toolkit/slices/cart.slice";
 import { useDispatch } from "react-redux";
-import axios from "../../api/axios";
+import { getAllProducts, getAllCategories } from "../../api/api";
+import Spinner from "../../components/spinner/Spinner";
 const Home = () => {
   // const { dispatch } = useContext(CartContext);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    axios.get("/api/categories").then((res) => {
-      setCategories(res.data.categories);
-    });
-    axios.get("/api/products").then((res) => {
-      setProducts(res.data.products);
-    });
+    setLoading(true);
+    Promise.all([getAllProducts(), getAllCategories()])
+      .then((results) => {
+        setProducts(results[0].products);
+        setCategories(results[1].categories);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
   const dispatch = useDispatch();
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div className="Home">
       <Container>

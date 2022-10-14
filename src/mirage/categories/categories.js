@@ -1,14 +1,9 @@
-import categoryList from "./categories.db";
-export function categoriesSeeds(server) {
-  categoryList.forEach((item) => {
-    server.create("category", {
-      ...item,
-    });
-  });
-}
+import { Response } from "miragejs";
 
 export function categoriesRoutes(server) {
   server.get("/categories", (schema) => {
+    console.log(schema);
+    // return new Response(404, {}, { error: "not found" });
     return schema.categories.all();
   });
 }
